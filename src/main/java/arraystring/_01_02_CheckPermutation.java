@@ -38,4 +38,23 @@ class _01_02_CheckPermutation {
         }
         return map.isEmpty();
     }
+
+    boolean checkPermutationWithArray(String a, String b) {
+        if(a.length() != b.length()) return false;
+
+        int[] matrix = new int[128];
+
+        for(int i = 0; i < a.length(); i++) {
+            matrix[a.charAt(i)]++;
+        }
+
+        for(int i = 0; i < b.length(); i++) {
+            matrix[b.charAt(i)]--;
+
+            if(matrix[b.charAt(i)] < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
