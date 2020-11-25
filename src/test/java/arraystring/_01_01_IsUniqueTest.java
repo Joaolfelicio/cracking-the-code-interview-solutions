@@ -10,18 +10,18 @@ public class _01_01_IsUniqueTest {
     private _01_01_IsUnique s = new _01_01_IsUnique();
 
     @Test
-    public void withEmptyString() {
-        assertTrue(s.isUnique(""));
+    public void withEmptyStringHashSet() {
+        assertTrue(s.isUniqueHashSet(""));
     }
 
     @Test
-    public void withUniqueString() {
-        assertTrue(s.isUnique("abcde"));
+    public void withUniqueStringHashSet() {
+        assertTrue(s.isUniqueHashSet("abcde"));
     }
 
     @Test
-    public void withDuplication() {
-        assertFalse(s.isUnique("abcda"));
+    public void withDuplicationHashSet() {
+        assertFalse(s.isUniqueHashSet("abcda"));
     }
 
     @Test
@@ -54,4 +54,18 @@ public class _01_01_IsUniqueTest {
         assertFalse(s.isUniqueBoolArr("abcda"));
     }
 
+    @Test
+    public void withEmptyStringBitVector() {
+        assertTrue(s.isUniqueBitVector(""));
+    }
+
+    @Test
+    public void withUniqueStringBitVector() {
+        assertTrue(s.isUniqueBitVector("abcde"));
+    }
+
+    @Test
+    public void withDuplicationBitVector() {
+        assertFalse(s.isUniqueBitVector("abcda"));
+    }
 }

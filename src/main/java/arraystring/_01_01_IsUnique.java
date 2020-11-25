@@ -9,10 +9,10 @@ import java.util.HashSet;
 
 class _01_01_IsUnique {
 
-    // With additional data structure
+    // Using HashSet
     // Time Complexity: O(n)
     // Space Complexity: O(n)
-    boolean isUnique(String str) {
+    boolean isUniqueHashSet(String str) {
 
         HashSet<Character> chars = new HashSet<>();
 
@@ -24,7 +24,7 @@ class _01_01_IsUnique {
         return true;
     }
 
-    // Without additional data structure
+    // Brute Forcing
     // Time Complexity: O(n^2)
     // Space Complexity: O(1)
     boolean isUniqueBruteForce(String str) {
@@ -54,6 +54,23 @@ class _01_01_IsUnique {
                 return false;
             }
             boolArr[str.charAt(i)] = true;
+        }
+        return true;
+    }
+
+    // With bit vector
+    // Time Complexity: O(n)
+    // Space Complexity: O(1) - Space complexity is reduced by a factor of 8 compared to using a bool array
+    boolean isUniqueBitVector(String str) {
+        int checker = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            int val = str.charAt(i) - 'a';
+
+            if((checker & (1 << val)) > 0) {
+                return false;
+            }
+            checker |= (1 << val);
         }
         return true;
     }
