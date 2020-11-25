@@ -24,4 +24,18 @@ class _01_01_IsUnique {
         return true;
     }
 
+    // Without additional data structure
+    // Time Complexity: O(n^2)
+    // Space Complexity: O(1)
+    boolean isUniqueBruteForce(String str) {
+
+        for(int i = 0; i < str.length(); i++) {
+            for(int k = 0; k < str.length(); k++) {
+                if(str.charAt(i) == str.charAt(k) && i != k) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
