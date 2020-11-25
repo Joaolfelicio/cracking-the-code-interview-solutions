@@ -39,4 +39,19 @@ public class _01_01_IsUniqueTest {
         assertFalse(s.isUniqueBruteForce("abcda"));
     }
 
+    @Test
+    public void withEmptyStringBoolArr() {
+        assertTrue(s.isUniqueBoolArr(""));
+    }
+
+    @Test
+    public void withUniqueStringBoolArr() {
+        assertTrue(s.isUniqueBoolArr("abcde"));
+    }
+
+    @Test
+    public void withDuplicationBoolArr() {
+        assertFalse(s.isUniqueBoolArr("abcda"));
+    }
+
 }
