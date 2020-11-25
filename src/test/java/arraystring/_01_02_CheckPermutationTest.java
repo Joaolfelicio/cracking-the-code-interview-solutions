@@ -10,32 +10,31 @@ public class _01_02_CheckPermutationTest {
     private _01_02_CheckPermutation s = new _01_02_CheckPermutation();
 
     @Test
-    public void withEmptyString() {
-        assertTrue(s.check("", ""));
+    public void withEmptyStringHashMap() {
+        assertTrue(s.checkPermutationWithHashMap("", ""));
     }
 
     @Test
-    public void withOneSingleChar() {
-        assertTrue(s.check("a", "a"));
+    public void withOneSingleCharHashMap() {
+        assertTrue(s.checkPermutationWithHashMap("a", "a"));
     }
 
     @Test
-    public void withOneSingleDifferentChar() {
-        assertFalse(s.check("a", "b"));
+    public void withOneSingleDifferentCharHashMap() {
+        assertFalse(s.checkPermutationWithHashMap("a", "b"));
     }
 
     @Test
-    public void withThreeChars() {
-        assertTrue(s.check("abc", "bac"));
+    public void withThreeCharsHashMap() {
+        assertTrue(s.checkPermutationWithHashMap("abc", "bac"));
     }
 
     @Test
-    public void withRepeatingChars() {
-        assertTrue(s.check("aabbc", "bcaba"));
+    public void withRepeatingCharsHashMap() { assertTrue(s.checkPermutationWithHashMap("aabbc", "bcaba"));
     }
 
     @Test
-    public void withDifferentLength() {
-        assertFalse(s.check("abc", "ab"));
+    public void withDifferentLengthHashMap() {
+        assertFalse(s.checkPermutationWithHashMap("abc", "ab"));
     }
 }
