@@ -2,6 +2,7 @@ package arraystring;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class _01_04_PalindromePermutationTest {
@@ -14,9 +15,7 @@ public class _01_04_PalindromePermutationTest {
     }
 
     @Test
-    public void withOneChar() {
-        assertTrue(s.check("a"));
-    }
+    public void withOneChar() { assertTrue(s.check("a")); }
 
     @Test
     public void withTwoWords_OddLetters() {
@@ -31,5 +30,10 @@ public class _01_04_PalindromePermutationTest {
     @Test
     public void withTwoWords_EvenLetters() {
         assertTrue(s.check("act cat"));
+    }
+
+    @Test
+    public void withTwoWords_EvenLettersBuFalse() {
+        assertFalse(s.check("act uat"));
     }
 }
