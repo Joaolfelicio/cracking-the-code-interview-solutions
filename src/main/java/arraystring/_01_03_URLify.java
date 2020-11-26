@@ -13,6 +13,24 @@ package arraystring;
 
 class _01_03_URLify {
     char[] urlify(char[] chars, int trueLength) {
+        int endPointer = chars.length - 1;
+        int startPointer = trueLength - 1;
+
+        while(startPointer >= 0) {
+            if(chars[startPointer] == ' ') {
+                chars[endPointer--] = '0';
+                chars[endPointer--] = '2';
+                chars[endPointer--] = '%';
+            } else {
+                chars[endPointer] = chars[startPointer];
+                endPointer--;
+            }
+            startPointer--;
+        }
+        return chars;
+    }
+
+    char[] urlifyAllTestCases(char[] chars, int trueLength) {
         char[] escapeSpace = "%20".toCharArray();
 
         int endPointer = chars.length - 1;

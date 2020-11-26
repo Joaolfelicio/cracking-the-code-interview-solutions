@@ -14,19 +14,16 @@ public class _01_03_URLifyTest {
     @Test
     public void withNoSpace() { assertArrayEquals("hello".toCharArray(), s.urlify("hello".toCharArray(), 5)); }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void withInsufficientLength() {
-        s.urlify("hello world ".toCharArray(), 11);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void withInsufficientLengthInTheBeginning() {
-        s.urlify(" helloworld ".toCharArray(), 11);
-    }
 
     @Test
     public void withOneSpace() { assertArrayEquals("hello%20world".toCharArray(), s.urlify("hello world  ".toCharArray(), 11)); }
 
     @Test
     public void withTwoSpaces() { assertArrayEquals("hello%20world%20bob".toCharArray(), s.urlify("hello world bob    ".toCharArray(), 15)); }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void withInsufficientLength() { s.urlifyAllTestCases("hello world ".toCharArray(), 11); }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void withInsufficientLengthInTheBeginning() { s.urlifyAllTestCases(" helloworld ".toCharArray(), 11); }
 }
