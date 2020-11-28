@@ -6,6 +6,7 @@ package arraystring;
  * If the "compressed" string would not become smaller than the original string, your method should return
  * the original string. You can assume the string has only uppercase and lowercase letters (a - z).
  */
+
 class _01_06_StringCompression {
     String compress(String s) {
         if (s.length() <= 2) return s;
@@ -24,7 +25,6 @@ class _01_06_StringCompression {
                 count = 1;
             }
         }
-
         return compressedStr.length() < s.length() ? compressedStr.toString() : s;
     }
 }
