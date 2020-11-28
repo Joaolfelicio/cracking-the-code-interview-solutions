@@ -7,7 +7,7 @@ package arraystring;
  * <p>
  * EXAMPLE
  * pale,  ple   -> true
- * pales, pale  -> true
+ * pales, paes  -> true
  * pale,  bale  -> true
  * pale,  bake  -> false
  * pae,   pale  -> true
@@ -15,38 +15,29 @@ package arraystring;
  */
 class _01_05_OneAway {
     boolean isOneAway(String a, String b) {
-
         String bigStr = a.length() > b.length() ? a : b;
         String smallStr = a.length() > b.length() ? b : a;
 
-        if(a.length() + 1 < b.length() || b.length() + 1 < a.length()) return false;
+        if(smallStr.length() + 1 < bigStr.length()) return false;
 
-        int numOfChanges = 0;
-        int bigArrPointer = bigStr.length() - 1;
-        int smallArrPointer = smallStr.length() - 1;
+        int changesAvailable = 1;
+        int bigArrPointer = 0;
+        int smallArrPointer = 0;
 
-        // Change
-        if(a.length() == b.length()) {
-            while(bigArrPointer >= 0) {
-                if(bigStr.charAt(bigArrPointer) != smallStr.charAt(bigArrPointer)) {
-                    numOfChanges++;
+
+        while(changesAvailable >= 0 && bigArrPointer < bigStr.length() - 1 && smallArrPointer < smallStr.length() - 1) {
+            if (bigStr.charAt(bigArrPointer) == smallStr.charAt(smallArrPointer)) {
+                smallArrPointer++;
+            } else {
+                changesAvailable--;
+                if(bigStr.length() == smallStr.length()) {
+                    smallArrPointer++;
                 }
-                bigArrPointer--;
             }
-
-        // Remove and Add
-        } else {
-            while(bigArrPointer >= 0 && smallArrPointer >= 0) {
-                if (bigStr.charAt(bigArrPointer) == smallStr.charAt(smallArrPointer)) {
-                    smallArrPointer--;
-                } else {
-                    numOfChanges++;
-                }
-                bigArrPointer--;
-            }
+            bigArrPointer++;
         }
 
-        return numOfChanges < 2;
+        return changesAvailable >= 0;
     }
 
 }
