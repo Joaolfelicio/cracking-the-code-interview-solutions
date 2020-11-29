@@ -11,18 +11,13 @@ class _01_07_RotateMatrix {
 
         if(n == 0) return m;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = i; j < n; j++) {
-                int temp = m[i][j];
-                m[i][j] = m[j][i];
-                m[j][i] = temp;
-            }
-        }
+        for(int i = 0; i < (n + 1) / 2; i++) {
+            for(int j = 0; j < n / 2; j++) {
+                int temp = m[n - 1 - j][i];
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n/2; j++) {
-                int temp = m[i][n - 1 - j];
-                m[i][n - 1 - j] = m[i][j];
+                m[n - 1 - j][i] = m[n - i - 1][n - 1 - j];
+                m[n - 1 - i][n - 1 - j] = m[j][n - 1 - i];
+                m[j][n - 1 - i] = m[i][j];
                 m[i][j] = temp;
             }
         }
