@@ -22,4 +22,19 @@ public class _02_01_RemoveDupsTest {
         Assert.assertEquals(LinkedListNode.of(1, 2, 3, 4), s.removeDups(LinkedListNode.of(1, 2, 2, 3, 2, 4)));
     }
 
+    @Test
+    public void withEmptyListWithOutExtraSpace() {
+        Assert.assertEquals(LinkedListNode.empty(), s.removeDupsWithOutExtraSpace(LinkedListNode.empty()));
+    }
+
+    @Test
+    public void withUniqueListWithOutExtraSpace() {
+        Assert.assertEquals(LinkedListNode.of(1, 2, 3, 4), s.removeDupsWithOutExtraSpace(LinkedListNode.of(1, 2, 3, 4)));
+    }
+
+    @Test
+    public void withDuplicationsWithOutExtraSpace() {
+        Assert.assertEquals(LinkedListNode.of(1, 2, 3, 4), s.removeDupsWithOutExtraSpace(LinkedListNode.of(1, 2, 2, 3, 2, 4)));
+    }
+
 }
