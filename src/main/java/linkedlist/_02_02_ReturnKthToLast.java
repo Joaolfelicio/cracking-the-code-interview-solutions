@@ -5,7 +5,7 @@ package linkedlist;
  */
 class _02_02_ReturnKthToLast {
 
-    LinkedListNode kthToLast(LinkedListNode head, int k) {
+    LinkedListNode kthToLastTwoPass(LinkedListNode head, int k) {
         if(head == null) return null;
 
         LinkedListNode curr = head;
@@ -26,4 +26,28 @@ class _02_02_ReturnKthToLast {
         }
         return curr;
     }
+
+    // Time complexity would be O(N), while the above would be O(2N)
+    LinkedListNode kthToLast(LinkedListNode head, int k) {
+        if(head == null) return null;
+
+        LinkedListNode slow = head;
+        LinkedListNode fast = head;
+        int tempK = k;
+
+        while(fast != null && tempK > 0) {
+            tempK--;
+            fast = fast.next;
+        }
+
+        if(fast == null) return null;
+
+        while(fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
 }
+
+//TODO: recursive way
