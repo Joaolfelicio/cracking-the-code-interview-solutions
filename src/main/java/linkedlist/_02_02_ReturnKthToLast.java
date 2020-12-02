@@ -33,21 +33,18 @@ class _02_02_ReturnKthToLast {
 
         LinkedListNode slow = head;
         LinkedListNode fast = head;
-        int tempK = k;
+        int tempK = k + 1;
 
-        while(fast != null && tempK > 0) {
-            tempK--;
+        while(fast != null) {
+
+            if(tempK > 0) {
+                tempK--;
+            } else {
+                slow = slow.next;
+            }
             fast = fast.next;
         }
-
-        if(fast == null) return null;
-
-        while(fast.next != null) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        return slow;
+        return tempK > 0 ? null : slow;
     }
 }
 
-//TODO: recursive way
