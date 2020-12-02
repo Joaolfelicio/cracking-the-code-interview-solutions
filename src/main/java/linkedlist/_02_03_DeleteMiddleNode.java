@@ -9,26 +9,14 @@ import java.util.LinkedList;
  */
 class _02_03_DeleteMiddleNode {
 
-    boolean deleteMiddleNode(LinkedListNode head) {
+    boolean deleteMiddleNode(LinkedListNode node) {
 
-        if(head == null || head.next == null || head.next.next == null) return false;
+        if(node == null || node.next == null ) return false;
 
-        LinkedListNode slow = head;
-        LinkedListNode fast = head.next.next;
-        LinkedListNode prev = null;
+        LinkedListNode next = node.next;
 
-        while(fast != null) {
-
-            if(fast.next != null) {
-                fast = fast.next.next;
-            } else {
-                fast = fast.next;
-            }
-            prev = slow;
-            slow = slow.next;
-        }
-
-        prev.next = slow.next;
+        node.val = next.val;
+        node.next = next.next;
 
         return true;
     }
