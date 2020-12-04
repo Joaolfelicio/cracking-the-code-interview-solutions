@@ -22,15 +22,15 @@ class _02_04_Partition {
 
         while(curr != null) {
             if(curr.val < x) {
-                currBelow.next = new LinkedListNode(curr.val);
+                currBelow.next = curr;
                 currBelow = currBelow.next;
             } else {
-                currAboveOrEqual.next = new LinkedListNode(curr.val);
+                currAboveOrEqual.next = curr;
                 currAboveOrEqual = currAboveOrEqual.next;
             }
             curr = curr.next;
         }
-
+        currAboveOrEqual.next = null;
         currBelow.next = aboveOrEqual.next;
         return below.next;
     }
