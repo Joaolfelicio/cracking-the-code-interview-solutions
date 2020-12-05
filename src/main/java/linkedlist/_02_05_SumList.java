@@ -78,30 +78,29 @@ class _02_05_SumList {
         }
 
         LinkedListNode prev = null;
+
         int carry = 0;
 
-        while(!stackL1.empty() || !stackL2.empty()) {
+        while(!stackL1.empty() || !stackL2.empty() || carry > 0) {
             int valL1 = 0;
             int valL2 = 0;
 
-            if(!stackL1.empty()) valL1 = stackL1.pop();
-            if(!stackL2.empty()) valL2 = stackL2.pop();
+            if(!stackL1.empty())
+                valL1 = stackL1.pop();
+
+            if(!stackL2.empty())
+                valL2 = stackL2.pop();
 
             int val = valL1 + valL2 + carry;
+
             carry = 0;
+
             if(val > 9) carry = 1;
 
             LinkedListNode newNode = new LinkedListNode(val % 10);
             newNode.next = prev;
             prev = newNode;
         }
-
-        if(carry > 0) {
-            LinkedListNode carryNode = new LinkedListNode(carry);
-            carryNode.next = prev;
-            prev = carryNode;
-        };
-
         return prev;
     }
 }
