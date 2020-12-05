@@ -13,28 +13,41 @@ class _02_06_Palindrome {
         Stack<Integer> stack = new Stack<>();
 
         LinkedListNode slow = head;
-        LinkedListNode fast = head.next.next;
-        
+        LinkedListNode fast = head;
+
         while (fast != null && fast.next != null) {
             stack.push(slow.val);
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        stack.push(slow.val);
-
-        if(fast == null)
+        // If it's an odd list
+        if(fast != null)
             slow = slow.next;
-        else if(fast.next == null)
-            slow = slow.next.next;
 
-        while(slow != null) {
-            if(slow.val != stack.pop()) return false;
+        LinkedListNode reverseHead = reverseLinkedList(slow);
+        slow = head;
+
+        while(reverseHead != null) {
+            if(slow.val != reverseHead.val) return false;
+
             slow = slow.next;
+            reverseHead = reverseHead.next;
         }
-
-        return stack.isEmpty();
+        return true;
     }
 
+    private LinkedListNode reverseLinkedList(LinkedListNode node) {
 
+        LinkedListNode curr = node;
+        LinkedListNode prev = null;
+
+        while(curr != null) {
+            LinkedListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
 }
