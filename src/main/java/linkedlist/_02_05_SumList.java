@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Stack;
+
 /**
  * Sum Lists: You have two numbers represented by a linked list,
  * where each node contains a single digit.
@@ -54,5 +56,52 @@ class _02_05_SumList {
         if(carry > 0) curr.next = new LinkedListNode(carry);
 
         return dummyList.next;
+    }
+
+    LinkedListNode sumFollowUp(LinkedListNode l1, LinkedListNode l2) {
+
+        LinkedListNode currL1 = l1;
+        LinkedListNode currL2 = l2;
+        Stack<Integer> stackL1 = new Stack<>();
+        Stack<Integer> stackL2 = new Stack<>();
+
+        while(currL1 != null || currL2 != null) {
+            if(currL1 != null) {
+                stackL1.push(currL1.val);
+                currL1 = currL1.next;
+            }
+
+            if(currL2 != null) {
+                stackL2.push(currL2.val);
+                currL2 = currL2.next;
+            }
+        }
+
+        LinkedListNode prev = null;
+        int carry = 0;
+
+        while(!stackL1.empty() || !stackL2.empty()) {
+            int valL1 = 0;
+            int valL2 = 0;
+
+            if(!stackL1.empty()) valL1 = stackL1.pop();
+            if(!stackL2.empty()) valL2 = stackL2.pop();
+
+            int val = valL1 + valL2 + carry;
+            carry = 0;
+            if(val > 9) carry = 1;
+
+            LinkedListNode newNode = new LinkedListNode(val % 10);
+            newNode.next = prev;
+            prev = newNode;
+        }
+
+        if(carry > 0) {
+            LinkedListNode carryNode = new LinkedListNode(carry);
+            carryNode.next = prev;
+            prev = carryNode;
+        };
+
+        return prev;
     }
 }
