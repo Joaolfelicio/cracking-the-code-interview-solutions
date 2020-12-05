@@ -37,4 +37,9 @@ public class _02_05_SumListTest {
     public void withTwoListsHavingDiffrentLength() {
         assertEquals(LinkedListNode.of(2, 4, 1), s.sum(LinkedListNode.of(1, 8, 9), LinkedListNode.of(5, 2)));
     }
+
+    @Test
+    public void withProvidedExample() {
+        assertEquals(LinkedListNode.of(2, 1, 9), s.sum(LinkedListNode.of(7,1 , 6), LinkedListNode.of(5, 9, 2)));
+    }
 }
