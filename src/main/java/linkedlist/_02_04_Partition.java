@@ -14,21 +14,20 @@ class _02_04_Partition {
 
     LinkedListNode partition(LinkedListNode head, int x) {
 
-        LinkedListNode curr = head;
         LinkedListNode below = new LinkedListNode(0);
         LinkedListNode aboveOrEqual = new LinkedListNode(0);
         LinkedListNode currBelow = below;
         LinkedListNode currAboveOrEqual = aboveOrEqual;
 
-        while(curr != null) {
-            if(curr.val < x) {
-                currBelow.next = curr;
+        while(head != null) {
+            if(head.val < x) {
+                currBelow.next = head;
                 currBelow = currBelow.next;
             } else {
-                currAboveOrEqual.next = curr;
+                currAboveOrEqual.next = head;
                 currAboveOrEqual = currAboveOrEqual.next;
             }
-            curr = curr.next;
+            head = head.next;
         }
         currAboveOrEqual.next = null;
         currBelow.next = aboveOrEqual.next;
