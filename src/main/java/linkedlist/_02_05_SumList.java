@@ -20,30 +20,39 @@ class _02_05_SumList {
 
         LinkedListNode currL1 = l1;
         LinkedListNode currL2 = l2;
-
-        int sum = sumLinkedList(currL2) + sumLinkedList(currL1);
-
         LinkedListNode dummyList = new LinkedListNode(0);
         LinkedListNode curr = dummyList;
 
-        while(sum > 0) {
-            curr.next = new LinkedListNode(sum % 10);
-            sum /= 10;
+        int carry = 0;
+
+        while(currL1 != null || currL2 != null) {
+
+            int valL1 = 0;
+            int valL2 = 0;
+
+            if(currL1 != null) {
+                valL1 = currL1.val;
+                currL1 = currL1.next;
+            }
+
+            if(currL2 != null) {
+                valL2 = currL2.val;
+                currL2 = currL2.next;
+            }
+
+            int val = valL1 + valL2 + carry;
+
+            carry = 0;
+
+            if(val > 9) carry = 1;
+
+            curr.next = new LinkedListNode(val % 10);
+
             curr = curr.next;
         }
 
+        if(carry > 0) curr.next = new LinkedListNode(carry);
+
         return dummyList.next;
-    }
-
-    int sumLinkedList(LinkedListNode node) {
-        int multiplier = 1;
-        int total = 0;
-
-        while (node != null) {
-            total += node.val * multiplier;
-            multiplier *= 10;
-            node = node.next;
-        }
-        return total;
     }
 }
