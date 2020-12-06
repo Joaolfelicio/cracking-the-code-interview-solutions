@@ -11,20 +11,45 @@ import java.util.HashSet;
 class _02_07_Intersection {
 
     LinkedListNode intersects(LinkedListNode l1, LinkedListNode l2) {
+        if(l1 == null || l2 == null) return null;
 
         LinkedListNode currL1 = l1;
         LinkedListNode currL2 = l2;
-        HashSet<LinkedListNode> nodesSet = new HashSet<>();
+        int l1Length = 0;
+        int l2Length = 0;
 
-        while(currL1 != null) {
-            nodesSet.add(currL1);
-            currL1 = currL1.next;
+        // Get the length of the linked list and the tails
+        while(currL1.next != null || currL2.next != null) {
+            if(currL1.next != null) {
+                l1Length++;
+                currL1 = currL1.next;
+            }
+
+            if(currL2.next != null) {
+                l2Length++;
+                currL2 = currL2.next;
+            }
         }
 
-        while (currL2 != null) {
-            if(nodesSet.contains(currL2)) return currL2;
-            currL2 = currL2.next;
+        // If the tails are different, the lists don't intersect
+        if(currL1 != currL2) return null;
+
+        LinkedListNode biggerList = l1Length > l2Length ? l1 : l2;
+        LinkedListNode smallerList = l1Length > l2Length ? l2 : l1;
+
+        int differenceLength = Math.abs(l1Length - l2Length);
+
+        // Move the bigger list the difference between the length of both lists
+        while(differenceLength > 0) {
+            biggerList = biggerList.next;
+            differenceLength--;
         }
-        return null;
+
+        while(biggerList != smallerList) {
+            biggerList = biggerList.next;
+            smallerList = smallerList.next;
+        }
+
+        return biggerList;
     }
 }
