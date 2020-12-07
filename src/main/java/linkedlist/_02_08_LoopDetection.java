@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.HashSet;
+
 /**
  * Loop Detection: Given a circular linked list, implement an algorithm that returns the node at the
  * beginning of the loop.
@@ -14,6 +16,20 @@ package linkedlist;
 class _02_08_LoopDetection {
 
     LinkedListNode detect(LinkedListNode head) {
-        throw new UnsupportedOperationException();
+        if(head == null) return null;
+
+        LinkedListNode curr = head;
+        HashSet<LinkedListNode> prevNodes = new HashSet<>();
+
+        while(curr != null) {
+            if(prevNodes.contains(curr)) {
+                return curr;
+            } else {
+                prevNodes.add(curr);
+            }
+            curr = curr.next;
+        }
+
+        return null;
     }
 }
