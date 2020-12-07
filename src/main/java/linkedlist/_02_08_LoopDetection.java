@@ -18,18 +18,23 @@ class _02_08_LoopDetection {
     LinkedListNode detect(LinkedListNode head) {
         if(head == null) return null;
 
-        LinkedListNode curr = head;
-        HashSet<LinkedListNode> prevNodes = new HashSet<>();
+        LinkedListNode slow = head;
+        LinkedListNode fast = head;
 
-        while(curr != null) {
-            if(prevNodes.contains(curr)) {
-                return curr;
-            } else {
-                prevNodes.add(curr);
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast) {
+                slow = head;
+
+                while(slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return fast;
             }
-            curr = curr.next;
         }
-
         return null;
     }
 }
