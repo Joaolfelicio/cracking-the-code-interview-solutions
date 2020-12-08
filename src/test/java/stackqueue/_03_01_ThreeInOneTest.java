@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class _03_01_ThreeInOneTest {
 
     @Test
-    public void withStackSize1() {
+    public void withStackSize1() throws Exception {
         _03_01_ThreeInOne s = new _03_01_ThreeInOne(1);
         s.push(0, 0);
         s.push(1, 1);
@@ -19,24 +19,22 @@ public class _03_01_ThreeInOneTest {
 
 
     @Test
-    public void withStackSize2() {
+    public void withStackSize2() throws Exception {
         _03_01_ThreeInOne s = new _03_01_ThreeInOne(2);
         s.push(0, 6);
         s.push(1, 1);
         s.push(1, 2);
         s.push(2, 3);
         s.push(2, 4);
-        s.push(2, 5);
         assertEquals(6, s.pop(0));
         assertEquals(2, s.pop(1));
         assertEquals(1, s.pop(1));
-        assertEquals(5, s.pop(2));
         assertEquals(4, s.pop(2));
         assertEquals(3, s.pop(2));
     }
 
     @Test(expected = RuntimeException.class)
-    public void withArrayLength3_Exceeded() {
+    public void withArrayLength3_Exceeded() throws Exception {
         _03_01_ThreeInOne s = new _03_01_ThreeInOne(1);
         s.push(0, 1);
         s.push(0, 1);
@@ -45,7 +43,7 @@ public class _03_01_ThreeInOneTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void withArrayLength3_StackNotExists() {
+    public void withArrayLength3_StackNotExists() throws Exception {
         _03_01_ThreeInOne s = new _03_01_ThreeInOne(3);
         s.push(3, 1);
     }
