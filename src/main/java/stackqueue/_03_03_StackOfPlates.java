@@ -12,12 +12,10 @@ class _03_03_StackOfPlates {
     }
 
     void push(int val) {
-
         // If the stack is already at full size, create a new stack
         if(head.stackSize == sizePerStack) {
             createStack();
         }
-
         head.stack[head.stackSize++] = val;
     }
 
