@@ -43,10 +43,10 @@ public class _03_03_StackOfPlatesTest {
         stack.push(8);
 
         assertEquals(6, stack.popAt(1));
-        assertEquals(7, stack.popAt(1));
+        assertEquals(5, stack.popAt(1));
         assertEquals(8, stack.pop());
         assertEquals(4, stack.popAt(0));
-        assertEquals(5, stack.pop());
+        assertEquals(7, stack.pop());
         assertEquals(3, stack.pop());
 
     }
