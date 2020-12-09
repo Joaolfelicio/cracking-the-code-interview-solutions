@@ -4,64 +4,32 @@ import java.util.Stack;
 
 class _03_04_QueueViaStacks {
 
-    Stack<Integer> queuingStack = new Stack<>();
-    Stack<Integer> dequeuingStack = new Stack<>();
-    boolean hasDequeuOrPeeked = false;
+    Stack<Integer> stackNewOnTop = new Stack<>();
+    Stack<Integer> stackOldOnTop = new Stack<>();
 
     void enqueue(int val) {
-        if(hasDequeuOrPeeked) {
-            fillQueuingStack();
-        }
-
-        queuingStack.push(val);
-        hasDequeuOrPeeked = false;
+        stackNewOnTop.push(val);
     }
 
     int size() {
-        int size;
-
-        if(hasDequeuOrPeeked) {
-            size = dequeuingStack.size();
-        } else {
-            size = queuingStack.size();
-        }
-        return size;
+        return stackNewOnTop.size() + stackOldOnTop.size();
     }
 
     int peek() {
-        int peekVal;
-
-        if(hasDequeuOrPeeked) {
-            peekVal = dequeuingStack.pop();
-        } else {
-            fillDequeuingStack();
-            peekVal = dequeuingStack.peek();
-        }
-
-        hasDequeuOrPeeked = true;
-        return peekVal;
+        shiftStacks();
+        return stackOldOnTop.peek();
     }
 
     int dequeue() {
-        if(!hasDequeuOrPeeked) {
-            fillDequeuingStack();
-        }
-
-        int val = dequeuingStack.pop();
-
-        hasDequeuOrPeeked = true;
-        return val;
+        shiftStacks();
+        return stackOldOnTop.pop();
     }
 
-    private void fillDequeuingStack() {
-        while(!queuingStack.isEmpty()) {
-            dequeuingStack.push(queuingStack.pop());
-        }
-    }
-
-    private void fillQueuingStack() {
-        while (!dequeuingStack.isEmpty()) {
-            queuingStack.push(dequeuingStack.pop());
+    private void shiftStacks() {
+        if(stackOldOnTop.isEmpty()) {
+            while(!stackNewOnTop.isEmpty()) {
+                stackOldOnTop.push(stackNewOnTop.pop());
+            }
         }
     }
 }
