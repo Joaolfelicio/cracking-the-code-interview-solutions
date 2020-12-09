@@ -14,20 +14,20 @@ class _03_03_StackOfPlates {
     void push(int val) {
 
         // If the stack is already at full size, create a new stack
-        if(head.headIndex == sizePerStack - 1) {
+        if(head.stackSize == sizePerStack) {
             createStack();
         }
 
-        head.stack[++head.headIndex] = val;
+        head.stack[head.stackSize++] = val;
     }
 
     int pop() {
-        if(head.next == null && head.headIndex == -1) throw new RuntimeException("Stack is empty");
+        if(head.next == null && head.stackSize == 0) throw new RuntimeException("Stack is empty");
 
-        int val = head.stack[head.headIndex--];
+        int val = head.stack[--head.stackSize];
 
         // If the stack is empty, update head to the next node and reduce stack quantity
-        if(head.next != null && head.headIndex == -1) {
+        if(head.next != null && head.stackSize == 0) {
             removeStack();
         }
         return val;
@@ -45,10 +45,10 @@ class _03_03_StackOfPlates {
             currStack = currStack.next;
         }
 
-        int poppedVal = currStack.stack[currStack.headIndex--];
+        int poppedVal = currStack.stack[--currStack.stackSize];
 
         // If the current stack is empty, update the pointers
-        if(currStack.headIndex == -1) {
+        if(currStack.stackSize == 0) {
             if(prevStack == null) {
                 head = head.next;
             } else if(currStack.next != null) {
@@ -58,9 +58,7 @@ class _03_03_StackOfPlates {
             }
             stackQuantity--;
         }
-
         return poppedVal;
-
     }
 
     private void removeStack() {
@@ -78,7 +76,7 @@ class _03_03_StackOfPlates {
 class NodeStack {
     int[] stack;
     NodeStack next;
-    int headIndex = -1;
+    int stackSize = 0;
 
     NodeStack(int[] stack, NodeStack next) {
         this.stack = stack;
