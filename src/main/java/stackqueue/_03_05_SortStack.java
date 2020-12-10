@@ -10,41 +10,41 @@ import java.util.Stack;
  */
 class  _03_05_SortStack {
 
-    Stack<Integer> sort(Stack<Integer> hiValuesOnTopStack) {
-        Stack<Integer> loValuesOnTopStack = new Stack<>();
+    Stack<Integer> sort(Stack<Integer> descendingStack) {
+        Stack<Integer> ascendingStack = new Stack<>();
 
         int counter = 0;
 
-        while(counter != hiValuesOnTopStack.size()) {
+        while(counter != descendingStack.size()) {
 
-            // Kee
             counter = 0;
 
-            while(!hiValuesOnTopStack.isEmpty()){
-                int valToCompare = hiValuesOnTopStack.pop();
+            while(!descendingStack.isEmpty()){
+                int valToCompare = descendingStack.pop();
 
-                if (hiValuesOnTopStack.isEmpty() || valToCompare >= hiValuesOnTopStack.peek()) {
-                    loValuesOnTopStack.push(valToCompare);
+                if (descendingStack.isEmpty() || valToCompare >= descendingStack.peek()) {
+                    ascendingStack.push(valToCompare);
                     counter++;
                 } else {
-                    loValuesOnTopStack.push(hiValuesOnTopStack.pop());
-                    hiValuesOnTopStack.push(valToCompare);
+                    ascendingStack.push(descendingStack.pop());
+                    descendingStack.push(valToCompare);
                 }
             }
 
-            if(counter == loValuesOnTopStack.size()) break;
+            // If the counter is equal to the ascendingStack size, means we haven't made any change, so it's already sorted
+            if(counter == ascendingStack.size()) break;
 
-            while(!loValuesOnTopStack.isEmpty()){
-                int valToCompare = loValuesOnTopStack.pop();
+            while(!ascendingStack.isEmpty()){
+                int valToCompare = ascendingStack.pop();
 
-                if (loValuesOnTopStack.isEmpty() || valToCompare <= loValuesOnTopStack.peek() ) {
-                    hiValuesOnTopStack.push(valToCompare);
+                if (ascendingStack.isEmpty() || valToCompare <= ascendingStack.peek() ) {
+                    descendingStack.push(valToCompare);
                 } else {
-                    hiValuesOnTopStack.push(loValuesOnTopStack.pop());
-                    loValuesOnTopStack.push(valToCompare);
+                    descendingStack.push(ascendingStack.pop());
+                    ascendingStack.push(valToCompare);
                 }
             }
         }
-        return loValuesOnTopStack;
+        return ascendingStack;
     }
 }
