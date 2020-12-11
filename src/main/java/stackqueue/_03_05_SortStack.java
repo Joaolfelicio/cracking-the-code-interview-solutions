@@ -10,41 +10,17 @@ import java.util.Stack;
  */
 class  _03_05_SortStack {
 
-    Stack<Integer> sort(Stack<Integer> descendingStack) {
-        Stack<Integer> ascendingStack = new Stack<>();
+    Stack<Integer> sort(Stack<Integer> stack) {
+        Stack<Integer> tempStack = new Stack<>();
 
-        int counter = 0;
+        while(!stack.isEmpty()){
+            int valToCompare = stack.pop();
 
-        while(counter != descendingStack.size()) {
-
-            counter = 0;
-
-            while(!descendingStack.isEmpty()){
-                int valToCompare = descendingStack.pop();
-
-                if (descendingStack.isEmpty() || valToCompare >= descendingStack.peek()) {
-                    ascendingStack.push(valToCompare);
-                    counter++;
-                } else {
-                    ascendingStack.push(descendingStack.pop());
-                    descendingStack.push(valToCompare);
-                }
+            if (!tempStack.isEmpty() && valToCompare > tempStack.peek()) {
+                while (!tempStack.isEmpty() && valToCompare >= tempStack.peek()) stack.push(tempStack.pop());
             }
-
-            // If the counter is equal to the ascendingStack size, means we haven't made any change, so it's already sorted
-            if(counter == ascendingStack.size()) break;
-
-            while(!ascendingStack.isEmpty()){
-                int valToCompare = ascendingStack.pop();
-
-                if (ascendingStack.isEmpty() || valToCompare <= ascendingStack.peek() ) {
-                    descendingStack.push(valToCompare);
-                } else {
-                    descendingStack.push(ascendingStack.pop());
-                    ascendingStack.push(valToCompare);
-                }
-            }
+            tempStack.push(valToCompare);
         }
-        return ascendingStack;
+        return tempStack;
     }
 }
