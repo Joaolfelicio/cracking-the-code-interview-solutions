@@ -1,5 +1,6 @@
 package stackqueue;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 /**
@@ -17,8 +18,7 @@ class _03_06_AnimalShelter {
 
     LinkedList<Animal> dogQueue;
     LinkedList<Animal> catQueue;
-    Animal oldestAnimal = null;
-    Animal newestAnimal = null;
+    int order;
 
     public _03_06_AnimalShelter() {
         dogQueue = new LinkedList<>();
@@ -27,87 +27,55 @@ class _03_06_AnimalShelter {
 
 
     void enqueue(AnimalType animalType, int val) {
-        Animal newAnimal = new Animal(animalType, val, newestAnimal, null);
+        Animal newAnimal = new Animal(animalType, val, ++order);
 
-        if(oldestAnimal == null) {
-            oldestAnimal = newAnimal;
-        }
-
-        // Update the next pointer on the newest animal
-        if(newestAnimal != null) {
-            newestAnimal.next = newAnimal;
-        }
-
-        // The new animal is now the newest one
-        newestAnimal = newAnimal;
-
-        if(animalType == AnimalType.Cat) {
+        if(newAnimal.animalType == AnimalType.Cat) {
             catQueue.add(newAnimal);
-        }
-        else if(animalType == AnimalType.Dog) {
+        } else if(newAnimal.animalType == AnimalType.Dog) {
             dogQueue.add(newAnimal);
         }
     }
 
     int dequeueAny() {
-        int adoptedAnimal;
-        
-        if(oldestAnimal.animalType == AnimalType.Cat) {
-            adoptedAnimal = dequeueCat();
-        } else {
+        int adoptedAnimal = -1;
+
+        int newestDogOrder = Integer.MAX_VALUE;
+        int newestCatOrder = Integer.MAX_VALUE;
+
+        if(!dogQueue.isEmpty()) {
+            newestDogOrder = dogQueue.peek().order;
+        }
+        if(!catQueue.isEmpty()) {
+            newestCatOrder = catQueue.peek().order;
+        }
+
+        if(newestDogOrder < newestCatOrder) {
             adoptedAnimal = dequeueDog();
+        } else if(newestDogOrder >= newestCatOrder) {
+            // Could use a else here, but maybe in the future we want to support more different animal queues
+            adoptedAnimal = dequeueCat();
         }
         return adoptedAnimal;
     }
 
     int dequeueDog() {
-        return deQueueAnimal(dogQueue);
+        return dogQueue.removeFirst().val;
     }
 
     int dequeueCat() {
-        return deQueueAnimal(catQueue);
-    }
-
-    private int deQueueAnimal(LinkedList<Animal> animalQueue) {
-        if(animalQueue.isEmpty()) throw new RuntimeException("The Stack is Empty");
-
-        Animal adoptedAnimal = animalQueue.removeFirst();
-
-        if(oldestAnimal == adoptedAnimal) {
-            // If the oldest animal is the one adopted, the oldest is the next one
-            oldestAnimal = oldestAnimal.next;
-        } else {
-            // If the animal adopted is not the oldest, we need to update the pointers between the next and previous animal
-            Animal prevAnimal = adoptedAnimal.prev;
-            Animal nextAnimal = adoptedAnimal.next;
-
-            prevAnimal.next = nextAnimal;
-
-            if(nextAnimal != null) {
-                nextAnimal.prev = prevAnimal;
-            }
-        }
-
-        return adoptedAnimal.val;
+        return catQueue.removeFirst().val;
     }
 
     class Animal {
         AnimalType animalType;
         int val;
-        Animal prev;
-        Animal next;
+        int order;
 
 
-        Animal(AnimalType animalType, int val, Animal prev, Animal next) {
+        Animal(AnimalType animalType, int val, int order) {
             this.animalType = animalType;
             this.val = val;
-            this.prev = prev;
-            this.next = next;
-        }
-
-        Animal(AnimalType animalType, int val) {
-            this.animalType = animalType;
-            this.val = val;
+            this.order = order;
         }
     }
 
