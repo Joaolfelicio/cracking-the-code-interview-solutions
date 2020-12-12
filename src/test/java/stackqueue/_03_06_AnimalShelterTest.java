@@ -10,10 +10,10 @@ public class _03_06_AnimalShelterTest {
 
     @Test
     public void withOrdinaryQueue() {
-        s.enqueueCat(5);
-        s.enqueueDog(4);
-        s.enqueueCat(6);
-        s.enqueueCat(7);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Dog, 5);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Cat,4);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Dog,6);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Cat,7);
 
         assertEquals(5, s.dequeueAny());
         assertEquals(4, s.dequeueAny());
@@ -22,12 +22,12 @@ public class _03_06_AnimalShelterTest {
     }
 
     @Test
-    public void withCatDogOledest() {
-        s.enqueueCat(5);
-        s.enqueueCat(3);
-        s.enqueueDog(6);
-        s.enqueueDog(2);
-        s.enqueueCat(1);
+    public void withCatDogOldest() {
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Cat, 5);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Cat, 3);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Dog, 6);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Dog, 2);
+        s.enqueue(_03_06_AnimalShelter.AnimalType.Cat, 1);
 
         assertEquals(6, s.dequeueDog());
         assertEquals(5, s.dequeueAny());
