@@ -37,8 +37,8 @@ public class _04_01_RouteBetweenNodesTest {
         Node[] temp = new Node[3];
 
         temp[0] = new Node("a", 3);
-        temp[1] = new Node("b", 0);
-        temp[2] = new Node("c", 0);
+        temp[1] = new Node("b", 1);
+        temp[2] = new Node("c", 1);
 
         temp[0].addAdjacent(temp[1]);
         temp[1].addAdjacent(temp[2]);
@@ -52,28 +52,23 @@ public class _04_01_RouteBetweenNodesTest {
 
     @Test
     public void withTwoVertex() {
-        Graph g = createNewGraph();
-        Node[] n = g.getNodes();
-        assertTrue(hasRoute(g, n[0], n[5]));
+        Node[] n = createNewGraph().getNodes();
+        assertTrue(hasRoute(n[0], n[5]));
 
-        Graph g1 = createNewGraph();
-        Node[] n1 = g1.getNodes();
-        assertTrue(hasRoute(g1, n1[3], n1[5]));
+        Node[] n1 = createNewGraph().getNodes();
+        assertTrue(hasRoute(n1[3], n1[5]));
 
-        Graph g2 = createNewGraph();
-        Node[] n2 = g2.getNodes();
-        assertFalse(hasRoute(g2, n2[3], n2[0]));
+        Node[] n2 = createNewGraph().getNodes();
+        assertFalse(hasRoute(n2[3], n2[0]));
     }
 
     @Test
     public void withCycle() {
-        Graph g = createNewGraphWithCycle();
-        Node[] n = g.getNodes();
-        assertTrue(hasRoute(g, n[0], n[1]));
+        Node[] n = createNewGraphWithCycle().getNodes();
+        assertTrue(hasRoute(n[0], n[2]));
 
-        Graph g1 = createNewGraph();
-        Node[] n1 = g1.getNodes();
-        assertTrue(hasRoute(g1, n1[0], n1[2]));
+        Node[] n1 = createNewGraphWithCycle().getNodes();
+        assertTrue(hasRoute(n1[0], n1[2]));
     }
 
 }

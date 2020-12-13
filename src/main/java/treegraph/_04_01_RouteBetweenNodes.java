@@ -10,7 +10,7 @@ import java.util.Queue;
 class _04_01_RouteBetweenNodes {
 
     // BFS
-    static boolean hasRoute(Graph graph, Node source, Node target) {
+    static boolean hasRoute(Node source, Node target) {
         if(source == target) return true;
 
         Queue<Node> vertexQueue = new LinkedList();
@@ -21,7 +21,7 @@ class _04_01_RouteBetweenNodes {
 
             Node currVertex = vertexQueue.poll();
 
-            if(currVertex.state != State.Visited) {
+            if(currVertex != null && currVertex.state == State.Unvisited) {
                 for (Node child : currVertex.getAdjacent()) {
                     if (child == target) return true;
                     vertexQueue.add(child);
