@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static treegraph._04_01_RouteBetweenNodes.hasRouteBfs;
+import static treegraph._04_01_RouteBetweenNodes.hasRoute;
 
 public class _04_01_RouteBetweenNodesTest {
 
@@ -54,26 +54,26 @@ public class _04_01_RouteBetweenNodesTest {
     public void withTwoVertex() {
         Graph g = createNewGraph();
         Node[] n = g.getNodes();
-        assertTrue(hasRouteBfs(g, n[0], n[5]));
+        assertTrue(hasRoute(g, n[0], n[5]));
 
         Graph g1 = createNewGraph();
         Node[] n1 = g1.getNodes();
-        assertTrue(hasRouteBfs(g1, n1[3], n1[5]));
+        assertTrue(hasRoute(g1, n1[3], n1[5]));
 
         Graph g2 = createNewGraph();
         Node[] n2 = g2.getNodes();
-        assertFalse(hasRouteBfs(g2, n2[3], n2[0]));
+        assertFalse(hasRoute(g2, n2[3], n2[0]));
     }
 
     @Test
     public void withCycle() {
         Graph g = createNewGraphWithCycle();
         Node[] n = g.getNodes();
-        assertTrue(hasRouteBfs(g, n[0], n[1]));
+        assertTrue(hasRoute(g, n[0], n[1]));
 
         Graph g1 = createNewGraph();
         Node[] n1 = g1.getNodes();
-        assertTrue(hasRouteBfs(g1, n1[0], n1[2]));
+        assertTrue(hasRoute(g1, n1[0], n1[2]));
     }
 
 }
