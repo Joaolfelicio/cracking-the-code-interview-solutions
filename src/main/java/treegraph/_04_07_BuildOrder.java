@@ -13,7 +13,7 @@ class _04_07_BuildOrder {
 
 
 
-    List<Integer> findBuildOrder(Digraph digraph) {
+    List<Integer> findBuildOrder(Graph digraph) {
         throw new UnsupportedOperationException();
     }
 
