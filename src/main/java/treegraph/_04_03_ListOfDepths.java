@@ -26,10 +26,10 @@ class _04_03_ListOfDepths {
                 BinaryTreeNode currNode = treeNodeQueue.poll();
 
                 if(currNode.left != null) {
-                    treeNodeQueue.add(currNode.left);
+                    treeNodeQueue.offer(currNode.left);
                 }
                 if(currNode.right != null) {
-                    treeNodeQueue.add(currNode.right);
+                    treeNodeQueue.offer(currNode.right);
                 }
 
                 depth.add(currNode.val);

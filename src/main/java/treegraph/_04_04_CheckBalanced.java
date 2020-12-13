@@ -9,8 +9,23 @@ class _04_04_CheckBalanced {
 
     //time o(N) space o(logN)
     boolean isBalanced(BinaryTreeNode root) {
-        throw new UnsupportedOperationException();
+        if(root == null) return true;
+
+        int height = isBalancedTree(root);
+
+        return height != -1;
     }
 
+    int isBalancedTree(BinaryTreeNode node) {
+        if(node == null) return -1;
 
+        int depthLeft = isBalancedTree(node.left);
+        int depthRight = isBalancedTree(node.right);
+
+        if(Math.abs(depthLeft - depthRight) > 1) {
+            return -1;
+        }
+
+        return Math.max(depthLeft, depthRight) + 1;
+    }
 }
