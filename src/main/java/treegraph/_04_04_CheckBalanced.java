@@ -9,10 +9,7 @@ class _04_04_CheckBalanced {
 
     //time o(N) space o(logN)
     boolean isBalanced(BinaryTreeNode root) {
-        if(root == null) return true;
-
         int height = isBalancedTree(root);
-
         return height != -1;
     }
 
