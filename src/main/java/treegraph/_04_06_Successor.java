@@ -6,8 +6,30 @@ package treegraph;
  */
 class _04_06_Successor {
     ParentAwareBinaryTreeNode findInOrderSuccessor(ParentAwareBinaryTreeNode node) {
-        throw new UnsupportedOperationException();
+        if(node == null) return null;
+
+        ParentAwareBinaryTreeNode successor = node;
+
+        if(node.right != null) {
+            successor = mostLeftChild(node.right);
+        } else {
+            while(successor != null && successor.val <= node.val) {
+                successor = successor.parent;
+            }
+        }
+        return successor;
     }
 
+    private ParentAwareBinaryTreeNode mostLeftChild(ParentAwareBinaryTreeNode node) {
+        if(node == null) return null;
+
+        ParentAwareBinaryTreeNode curr = node;
+
+        while(curr.left != null) {
+            curr = curr.left;
+        }
+
+        return curr;
+    }
 
 }
