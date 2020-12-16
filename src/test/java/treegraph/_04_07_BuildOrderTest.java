@@ -10,11 +10,11 @@ import static org.junit.Assert.assertNull;
 
 public class _04_07_BuildOrderTest {
 
-    private _04_07_BuildOrder s = new _04_07_BuildOrder();
-
+//    private _04_07_BuildOrder s = new _04_07_BuildOrder();
+//
 //    @Test
 //    public void withOneProject() {
-//        Graph digraph = new Graph(1);
+//        Graph digraph = new Graph2(1);
 //        assertEquals(Collections.singletonList(0), s.findBuildOrder(digraph));
 //    }
 //
