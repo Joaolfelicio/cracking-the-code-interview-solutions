@@ -13,19 +13,19 @@ class _04_08_FindCommonAncestor {
 
         ParentAwareBinaryTreeNode currA = a;
         ParentAwareBinaryTreeNode currB = b;
-        HashSet<ParentAwareBinaryTreeNode> ancestorsB = new HashSet<>();
 
-        while(currB != null) {
-            ancestorsB.add(currB);
-            currB = currB.parent;
-        }
-
-        while(currA != null) {
-            if(ancestorsB.contains(currA)) return currA;
+        while(currA != currB) {
             currA = currA.parent;
-        }
+            currB = currB.parent;
 
-        return null;
+            if(currA == null) {
+                currA = b;
+            }
+            if(currB == null) {
+                currB = a;
+            }
+        }
+        return currA;
     }
 
 
