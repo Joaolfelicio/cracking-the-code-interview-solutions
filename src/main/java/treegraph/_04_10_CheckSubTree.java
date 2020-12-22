@@ -9,13 +9,14 @@ package treegraph;
  */
 class _04_10_CheckSubTree {
 
-    private StringBuilder sb;
-
     boolean isSubTree(BinaryTreeNode a, BinaryTreeNode b) {
-        throw new UnsupportedOperationException();
+        return a != null && ( isEqual(a, b) || isSubTree(a.left, b) || isSubTree(a.right, b));
     }
 
+    private boolean isEqual(BinaryTreeNode a, BinaryTreeNode b) {
+        if(a == null && b == null) return true;
+        if(a == null || b == null) return false;
 
-
-
+        return a.val == b.val && isEqual(a.left, b.left) && isEqual(a.right, b.right);
+    }
 }
