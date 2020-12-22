@@ -11,14 +11,14 @@ public class _04_08_FindCommonAncestorTest {
     @Test
     public void withOneNode() {
         ParentAwareBinaryTreeNode node = new ParentAwareBinaryTreeNode(1);
-        assertEquals(node, s.findCommonAncestor(node, node));
+        assertEquals(node, s.findCommonAncestor(node, node, node));
     }
 
     @Test
     public void withTwoNodes() {
         ParentAwareBinaryTreeNode node = new ParentAwareBinaryTreeNode(1);
         node.addLeft(2);
-        assertEquals(node, s.findCommonAncestor(node, node.left));
+        assertEquals(node, s.findCommonAncestor(node, node, node.left));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class _04_08_FindCommonAncestorTest {
         ParentAwareBinaryTreeNode node = new ParentAwareBinaryTreeNode(1);
         node.addLeft(2);
         node.addRight(3);
-        assertEquals(node, s.findCommonAncestor(node.left, node.right));
+        assertEquals(node, s.findCommonAncestor(node, node.left, node.right));
     }
 
     @Test
@@ -36,6 +36,6 @@ public class _04_08_FindCommonAncestorTest {
         ParentAwareBinaryTreeNode ancestor = node.addRight(3);
         ParentAwareBinaryTreeNode a = ancestor.addLeft(4).addRight(5);
         ParentAwareBinaryTreeNode b = ancestor.addRight(6).addRight(7).addRight(8);
-        assertEquals(ancestor, s.findCommonAncestor(a, b));
+        assertEquals(ancestor, s.findCommonAncestor(node, a, b));
     }
 }
