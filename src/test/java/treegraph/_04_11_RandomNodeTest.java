@@ -14,7 +14,7 @@ public class _04_11_RandomNodeTest {
         tree.insert(1);
         tree.insert(3);
         tree.insert(6);
-        assertEquals(3, tree.find(3).getVal());
+        assertEquals(3, tree.find(3).val);
         assertNull(tree.find(4));
         assertNotNull(tree.getRandomNode());
     }
