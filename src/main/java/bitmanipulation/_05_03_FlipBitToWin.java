@@ -10,6 +10,23 @@ package bitmanipulation;
  */
 class _05_03_FlipBitToWin {
     int flip(int n) {
-        throw new UnsupportedOperationException();
+        if(~n == 0) return Integer.BYTES * 8;
+
+        int counter = 0;
+        int prevCounter = 0;
+        int highestSubsequence = 1;
+
+        while(n > 0)
+        {
+            if((1 & n) == 1) {
+                counter++;
+            } else {
+                prevCounter = (n & 2) == 0 ? 0 : counter;
+                counter = 0;
+            }
+            n >>>= 1;
+            highestSubsequence = Math.max(counter + prevCounter + 1, highestSubsequence);
+        }
+        return highestSubsequence;
     }
 }

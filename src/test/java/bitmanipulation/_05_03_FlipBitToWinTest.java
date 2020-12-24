@@ -4,13 +4,18 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class _05_03_FilpBitToWinTest {
+public class _05_03_FlipBitToWinTest {
 
     private _05_03_FlipBitToWin s = new _05_03_FlipBitToWin();
 
     @Test
     public void withZero() {
         assertEquals(1, s.flip(0));
+    }
+
+    @Test
+    public void defaultTest() {
+        assertEquals(8, s.flip(1775));
     }
 
     @Test
