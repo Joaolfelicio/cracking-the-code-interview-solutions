@@ -14,6 +14,26 @@ package bitmanipulation;
 class _05_01_Insertion {
 
     int insert(int n, int m, int i, int j) {
-        throw new UnsupportedOperationException();
+
+        // Get all ones
+        int allOnes = ~0;
+
+        // Create mask with 1s before j position
+        int left = j < 32 ? (allOnes << j + 1) : 0;
+
+        // Create mask with 1s after i position
+        int right = (1 << i) - 1;
+
+        // Create mask containing both left and right
+        int mask = left | right;
+
+        // AND both to get a clean index where M should go
+        int cleanN = mask & n;
+
+        // Shift M into the correct position
+        int shifftedM = m << i;
+
+        // Put them together
+        return shifftedM | cleanN;
     }
 }
