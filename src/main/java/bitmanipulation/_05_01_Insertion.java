@@ -31,9 +31,9 @@ class _05_01_Insertion {
         int cleanN = mask & n;
 
         // Shift M into the correct position
-        int shifftedM = m << i;
+        int shiftedM = m << i;
 
         // Put them together
-        return shifftedM | cleanN;
+        return shiftedM | cleanN;
     }
 }

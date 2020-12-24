@@ -6,6 +6,22 @@ package bitmanipulation;
  */
 class _05_02_BinaryToString {
     String print(double num) {
-        throw new UnsupportedOperationException();
+        if(num == 0) return "ERROR";
+
+        StringBuilder result = new StringBuilder(".");
+
+        while(num > 0) {
+            if(result.length() >= 32) return "ERROR";
+
+            num *= 2;
+
+            if(num >= 1) {
+                result.append("1");
+                num -= 1;
+            } else {
+                result.append("0");
+            }
+        }
+        return result.toString();
     }
 }
