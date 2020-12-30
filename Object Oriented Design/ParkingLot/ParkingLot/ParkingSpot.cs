@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Security;
 using System.Text;
 
 namespace ParkingLot
 {
     public class ParkingSpot
     {
-        public ParkingSpot(Size size, int rowNumber, int floor, bool isHandicappedSpot)
+        public ParkingSpot(Size size, int rowNumber, Floor floor, bool isHandicappedSpot)
         {
             Size = size;
             RowNumber = rowNumber;
@@ -17,7 +18,7 @@ namespace ParkingLot
         public Size Size { get; }
         public Vehicle Vehicle { get; private set; }
         public int RowNumber { get; }
-        public int Floor { get; }
+        public Floor Floor { get; }
         public bool IsHandicappedSpot { get; }
 
         public bool IsSpotFree() => Vehicle == null;
@@ -26,6 +27,7 @@ namespace ParkingLot
         public void ParkVehicle(Vehicle vehicle)
         {
             if (CanVehiclePark(vehicle)) Vehicle = vehicle;
+            Floor.SpotTaken();
         }
 
         public Vehicle FreeSpot()
@@ -33,6 +35,7 @@ namespace ParkingLot
             if (IsSpotFree()) return null;
             var vehicle = Vehicle;
             Vehicle = null;
+            Floor.SpotFreed();
             return vehicle;
         }
 

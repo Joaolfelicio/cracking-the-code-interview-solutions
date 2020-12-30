@@ -6,7 +6,7 @@ namespace ParkingLot
 {
     public class Bus : Vehicle
     {
-        public Bus() : base(Size.Large)
+        public Bus(bool isHandicapped) : base(Size.Large, isHandicapped)
         {
         }
     }

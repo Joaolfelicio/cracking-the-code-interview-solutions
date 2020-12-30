@@ -16,6 +16,8 @@
 
             var parkingSpot = ParkingManager.ParkVehicle(vehicle);
 
+            if (parkingSpot == null) return null;
+
             return new ParkingTicket(vehicle, parkingSpot);
         }
 

@@ -3,10 +3,10 @@
     public class ParkingManager
     {
         public Floor[] Floors { get; private set; }
+        
+        public bool IsParkingFull() => ParkingFreeSpots() == 0;
 
-        public int FreeSpots { get; private set; } = 1000;
-        public bool IsParkingFull() => FreeSpots == 0;
-
+        public void FreeSpot(ParkingTicket parkingTicket) => parkingTicket.ParkingSpot.FreeSpot();
 
         public ParkingSpot ParkVehicle(Vehicle vehicle)
         {
@@ -17,17 +17,17 @@
                 if (parkingSpot != null)
                 {
                     parkingSpot.ParkVehicle(vehicle);
-                    FreeSpots--;
                     return parkingSpot;
                 }
             }
             return null;
         }
 
-        public void FreeSpot(ParkingTicket parkingTicket)
+        public int ParkingFreeSpots()
         {
-            var vehicle = parkingTicket.ParkingSpot.FreeSpot();
-            if (vehicle != null) FreeSpots++;
+            var total = 0;
+            foreach (var floor in Floors) total += floor.FloorFreeSpots;
+            return total;
         }
     }
 }

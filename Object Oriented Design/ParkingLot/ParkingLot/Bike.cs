@@ -2,7 +2,7 @@
 {
     public class Bike : Vehicle
     {
-        public Bike() : base(Size.Small)
+        public Bike(bool isHandicapped) : base(Size.Small, isHandicapped)
         {
         }
     }

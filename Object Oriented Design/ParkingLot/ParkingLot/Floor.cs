@@ -6,6 +6,11 @@ namespace ParkingLot
     {
         public int FloorNumber { get; set; }
         public List<ParkingSpot[]> ParkingSpots { get; set; }
+        public int FloorFreeSpots { get; set; }
+
+        public void SpotTaken() => FloorFreeSpots--;
+        public void SpotFreed() => FloorFreeSpots++;
+        public bool IsFloorFull() => FloorFreeSpots == 0;
 
         public bool HasAvailableSpot(Vehicle vehicle)
         {
