@@ -16,18 +16,23 @@ namespace CallCenter
 
         public void DispatchCall()
         {
-            var call = IncomingCalls.Dequeue();
+            var call = IncomingCalls.Peek();
 
-            int startIndex = GetEmployeeStartIndex(call.MinEmployeeLevel);
+            var startIndex = GetEmployeeStartIndex(call.MinEmployeeLevel);
+
+            var employeeFound = false;
 
             for (var i = startIndex; i < EmployeesWorking.Length; i++)
             {
                 if (EmployeesWorking[i].IsAvailable && call.MinEmployeeLevel <= EmployeesWorking[i].EmployeeLevel)
                 {
                     EmployeesWorking[i].TakeCall(call);
+                    employeeFound = true;
                     break;
                 }
             }
+
+            if (employeeFound) IncomingCalls.Dequeue();
         }
 
         private int GetEmployeeStartIndex(EmployeeLevel minEmployeeLevel)

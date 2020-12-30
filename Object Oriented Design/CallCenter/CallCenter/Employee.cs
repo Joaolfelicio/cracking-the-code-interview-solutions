@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CallCenter
 {
-    public class Employee
+    public abstract class Employee
     {
-        public Employee(EmployeeLevel employeeLevel)
+        protected Employee(EmployeeLevel employeeLevel)
         {
             IsWorking = true;
             EmployeeLevel = employeeLevel;
