@@ -6,6 +6,12 @@ namespace BookReader
 {
     public class Book
     {
+        public Book()
+        {
+            Id = new Guid();
+        }
+
+        public Guid Id { get; }
         public string Name { get; private set; }
         public Author Author { get; private set; }
         public Genre Genre { get; private set; }

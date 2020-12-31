@@ -6,10 +6,17 @@ namespace BookReader
 {
     public class BookStore
     {
-        public List<Book> Books { get; private set; }
-        public Book GetBook(Book book) => Books.Find(x => x == book);
-        public Book GetBookByGenre(Genre genre) => Books.Find(x => x.Genre == genre);
-        public Book GetBooksByAuthor(Author author) => Books.Find(x => x.Author == author);
-        public Book GetBooksByName(string name) => Books.Find(x => x.Name.Contains(name));
+        public Dictionary<Guid, Book> Books { get; private set; }
+        public Book GetBook(Guid id)
+        {
+            if(Books.ContainsKey(id)) return Books[id];
+            return null;
+        }
+        public bool AddBook(Book book)
+        {
+            if (Books.ContainsKey(book.Id)) return false;
+            Books.Add(book.Id, book);
+            return true;
+        }
     }
 }

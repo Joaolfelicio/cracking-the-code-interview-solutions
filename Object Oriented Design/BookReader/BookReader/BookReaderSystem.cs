@@ -9,7 +9,7 @@ namespace BookReader
             BookStore = new BookStore();
         }
 
-        public List<User> User { get; private set; }
+        public UserManager UserManager { get; private set; }
         public BookStore BookStore { get; }
     }
 }
