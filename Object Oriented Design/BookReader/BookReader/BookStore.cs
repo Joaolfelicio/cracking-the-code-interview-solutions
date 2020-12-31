@@ -18,5 +18,13 @@ namespace BookReader
             Books.Add(book.Id, book);
             return true;
         }
+
+        public bool RemoveBook(Guid id)
+        {
+            if (!Books.ContainsKey(id)) return false;
+            
+            Books.Remove(id);
+            return true;
+        }
     }
 }
