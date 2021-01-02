@@ -9,35 +9,12 @@ namespace Othello
             MatrixBoard = new Piece[8,8];
         }
 
-        public Piece[,] MatrixBoard { get; set; }
-        public int BlackPoints { get; private set; } = 2; 
-        public int WhitePoints { get; private set; } = 2;
-        private static Board Instance { get; set; }
-
-        public static Board GetInstance()
-        {
-            if(Instance == null) Instance = new Board();
-            return Instance;
-        }
-
         public void StartGame()
         {
             InsertPiece(Color.White, 3, 3);
             InsertPiece(Color.White, 3, 4);
             InsertPiece(Color.Black, 4, 3);
             InsertPiece(Color.Black, 4, 4);
-        }
-
-        public void PointToBlack()
-        {
-            BlackPoints++;
-            WhitePoints--;
-        }
-
-        public void PointToWhite()
-        {
-            BlackPoints--;
-            WhitePoints++;
         }
 
         public void RestartGame()
@@ -51,6 +28,8 @@ namespace Othello
             }
             StartGame();
         }
+
+        public Piece[,] MatrixBoard { get; set; }
 
         public bool InsertPiece(Color color, int row, int col)
         {

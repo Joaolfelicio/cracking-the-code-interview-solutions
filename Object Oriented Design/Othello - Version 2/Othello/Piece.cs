@@ -11,27 +11,13 @@ namespace Othello
             Position = position;
             SurroundingPieces = new Piece[3, 3];
             SurroundingPieces[1,1] = this;
-            Board = Board.GetInstance();
         }
 
-        public Board Board { get; }
         public Position Position { get; private set; }
         public Color Color { get; private set; }
         public Piece[,] SurroundingPieces { get; private set; }
 
-        private void FlipPiece()
-        {
-            if (Color == Color.Black)
-            {
-                Color = Color.White;
-                Board.PointToWhite();
-            }
-            else
-            {
-                Color = Color.Black;
-                Board.PointToBlack();
-            }
-        }
+        private void FlipPiece() => Color = Color == Color.Black ? Color.White : Color.Black;
         private bool IsSurrounded() => IsSurroundedVertically() || IsSurroundedHorizontally() || IsSurroundedDiagonally();
         public bool IsOppositeColor(Color color) => color != Color;
         public void AddSurroundingPiece(Piece piece)
