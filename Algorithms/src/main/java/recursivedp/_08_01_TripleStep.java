@@ -7,6 +7,19 @@ package recursivedp;
 class _08_01_TripleStep {
 
     int countWays(int steps) {
-        throw new UnsupportedOperationException();
+        var stepsAllowed = new int[] {1,2,3};
+
+        var table = new int[steps + 1];
+        table[0] = 1;
+
+        for(int i = 0; i < table.length; i++) {
+            for(int j = 0; j < stepsAllowed.length; j++) {
+
+                if(i + stepsAllowed[j] < table.length && table[i] != 0) {
+                    table[i + stepsAllowed[j]] += table[i];
+                }
+            }
+        }
+        return table[steps];
     }
 }
