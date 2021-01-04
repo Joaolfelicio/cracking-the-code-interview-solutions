@@ -1,6 +1,8 @@
 package recursivedp;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,21 +18,26 @@ class _08_02_RobotInAGrid {
 
         if(grid.length == 0 ||!grid[0][0]) return path;
 
-        if(findPath(grid, grid.length - 1, grid[0].length - 1, path)) return path;
+        if(findPath(grid, grid.length - 1, grid[0].length - 1, path,  new HashSet<>())) return path;
 
         return new LinkedList<Point>();
     }
 
-    boolean findPath(boolean[][] grid, int row, int col, List<Point> path) {
+    boolean findPath(boolean[][] grid, int row, int col, List<Point> path, HashSet<Point> failedPoints) {
         if(row < 0 || col < 0 || !grid[row][col]) return false;
+
+        var newPoint = new Point(row, col);
+
+        if(failedPoints.contains(newPoint)) return false;
 
         var isOrigin = row == 0 && col == 0;
 
-        if(isOrigin || findPath(grid, row, col - 1, path) || findPath(grid, row - 1, col, path)) {
-            path.add(new Point(row, col));
+        if(isOrigin || findPath(grid, row, col - 1, path, failedPoints) || findPath(grid, row - 1, col, path, failedPoints)) {
+            path.add(newPoint);
             return true;
         }
 
+        failedPoints.add(newPoint);
         return false;
     }
 
