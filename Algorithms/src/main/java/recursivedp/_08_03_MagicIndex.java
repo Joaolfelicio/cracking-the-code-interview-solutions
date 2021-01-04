@@ -7,6 +7,20 @@ package recursivedp;
 class _08_03_MagicIndex {
 
     int findMagicIndex(int[] arr) {
-        throw new UnsupportedOperationException();
+        return findMagicIndex(0, arr.length - 1, arr);
+    }
+
+    int findMagicIndex(int left, int right, int[] arr) {
+        if(left > right) return -1;
+
+        int middleIndex = left + ((right - left) / 2);
+
+        if(middleIndex == arr[middleIndex]) {
+            return middleIndex;
+        } else if(arr[middleIndex] > middleIndex) {
+            return findMagicIndex(left, middleIndex - 1, arr);
+        } else {
+            return findMagicIndex(middleIndex + 1, right, arr);
+        }
     }
 }

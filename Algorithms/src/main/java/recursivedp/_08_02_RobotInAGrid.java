@@ -16,7 +16,7 @@ class _08_02_RobotInAGrid {
     List<Point> findPath(boolean[][] grid) {
         var path = new LinkedList<Point>();
 
-        if(grid.length == 0 ||!grid[0][0]) return path;
+        if(grid.length == 0 || !grid[0][0]) return path;
 
         if(findPath(grid, grid.length - 1, grid[0].length - 1, path,  new HashSet<>())) return path;
 
