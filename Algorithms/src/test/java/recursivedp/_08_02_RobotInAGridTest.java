@@ -22,8 +22,8 @@ public class _08_02_RobotInAGridTest {
         };
 
         assertEquals(Arrays.asList(
-                new Point(0, 0), new Point(0, 1),
-                new Point(0, 2), new Point(1, 2),
+                new Point(0, 0), new Point(1, 0),
+                new Point(2, 0), new Point(2, 1),
                 new Point(2, 2)), s.findPath(grid));
     }
 
@@ -36,7 +36,7 @@ public class _08_02_RobotInAGridTest {
         };
 
         assertEquals(Arrays.asList(
-                new Point(0, 0), new Point(0, 1),
+                new Point(0, 0), new Point(1, 0),
                 new Point(1, 1), new Point(2, 1),
                 new Point(2, 2)), s.findPath(grid));
     }
