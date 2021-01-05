@@ -7,14 +7,21 @@ package recursivedp;
 class _08_05_RecursiveMultiply {
 
     int multiple(int a, int b) {
-        int lowest = Math.min(a, b);
-        int highest = Math.max(a, b);
-        int total = 0;
+        int smaller = Math.min(a, b);
+        int bigger = Math.max(a, b);
 
-        while(lowest > 0) {
-            total += highest;
-            lowest--;
-        }
-        return total;
+        return minProductHelper(smaller, bigger);
+    }
+
+    private int minProductHelper(int smaller, int bigger) {
+        if (smaller == 0) return 0;
+        if (smaller == 1) return bigger;
+
+        int halfValue = smaller >> 1;
+        int halfProd = minProductHelper(halfValue, bigger);
+
+        if(smaller % 2 == 0) return halfProd + halfProd;
+
+        return halfProd + halfProd + bigger;
     }
 }
