@@ -7,7 +7,14 @@ package recursivedp;
 class _08_05_RecursiveMultiply {
 
     int multiple(int a, int b) {
-        throw new UnsupportedOperationException();
-    }
+        int lowest = Math.min(a, b);
+        int highest = Math.max(a, b);
+        int total = 0;
 
+        while(lowest > 0) {
+            total += highest;
+            lowest--;
+        }
+        return total;
+    }
 }
