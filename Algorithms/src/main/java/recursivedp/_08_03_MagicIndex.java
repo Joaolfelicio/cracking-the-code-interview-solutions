@@ -14,13 +14,20 @@ class _08_03_MagicIndex {
         if(left > right) return -1;
 
         int middleIndex = left + ((right - left) / 2);
+        int middleValue = arr[middleIndex];
 
-        if(middleIndex == arr[middleIndex]) {
-            return middleIndex;
-        } else if(arr[middleIndex] > middleIndex) {
-            return findMagicIndex(left, middleIndex - 1, arr);
-        } else {
-            return findMagicIndex(middleIndex + 1, right, arr);
+        if(middleIndex == middleValue) {
+            return middleValue;
         }
+
+        //Search left
+        int leftIndex = Math.min(middleIndex - 1, middleValue);
+        if(findMagicIndex(left, leftIndex, arr) >= 0) return left;
+
+        //Search right
+        int rightIndex = Math.min(middleIndex + 1, middleValue);
+        int rightSide = findMagicIndex(rightIndex, right, arr);
+
+        return rightSide;
     }
 }

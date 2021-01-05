@@ -20,6 +20,11 @@ public class _08_03_MagicIndexTest {
     }
 
     @Test
+    public void withMagicIndexIfNotDistinct() {
+        assertEquals(2, s.findMagicIndex(new int[]{-1, 0, 2, 2, 7, 9}));
+    }
+
+    @Test
     public void withoutMagicIndex() {
         assertEquals(-1, s.findMagicIndex(new int[]{1, 2, 3, 4, 5, 6}));
     }
