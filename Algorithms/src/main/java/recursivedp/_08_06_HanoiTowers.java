@@ -1,6 +1,6 @@
 package recursivedp;
 
-import java.util.List;
+import java.util.Stack;
 
 /**
  * In the classic problem of the towers of Hanoi,
@@ -15,8 +15,28 @@ import java.util.List;
  */
 class _08_06_HanoiTowers {
 
-    List<Integer> leftToRight(int n) {
-        throw new UnsupportedOperationException();
-    }
+    public class Tower {
+        private Stack<Integer> disks = new Stack<>();
 
+        public void add(int value) {
+            if (!disks.isEmpty() && disks.peek() <= value) {
+                System.out.println("Error placing disk " + value);
+            } else {
+                disks.push(value);
+            }
+        }
+
+        public void moveTopTo(Tower tower) {
+            int top = disks.pop();
+            tower.add(top);
+        }
+
+        public void moveDisks(int quantity, Tower destination, Tower buffer) {
+            if (quantity <= 0) return;
+
+            moveDisks(quantity - 1, buffer, destination);
+            moveTopTo(destination);
+            buffer.moveDisks(quantity - 1, destination, this);
+        }
+    }
 }
